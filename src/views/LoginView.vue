@@ -5,11 +5,11 @@
     <!-- <p>Please fill in this form to create an account.</p> -->
     <hr>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+    <label for="phoneNumber"><b>Phone Number</b></label>
+    <input type="text" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required  v-model="phoneNumber">
     <br>
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required  v-model="password">
     <br>
     <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
@@ -24,8 +24,6 @@
   </div>
 </form>
 </template>
-
-
 
 <style>
 
@@ -110,6 +108,28 @@ export default {
   name: 'LoginView',
   components: {
     Login
+  },
+  data() {
+    return {
+      phoneNumber: '',
+      password: '',
+    }
+  },
+  methods: {
+    register () {
+      console.log({hello: this.phoneNumber})
+      fetch('http://localhost:8888/login', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({phoneNumber: this.phoneNumber, password: this.password})
+        })
+        .then(res => res.json())
+        .then(data => console.log('done'))
+        .catch(err => console.log(err.message))      
+    }
   }
 }
 </script>

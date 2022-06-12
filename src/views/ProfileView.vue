@@ -1,7 +1,7 @@
 <template>
   <div class="Profile">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <Profile msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <!-- <Profile msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
@@ -15,4 +15,6 @@ export default {
     Profile
   }
 }
+
+// this.$router.push({path: '/login'});
 </script>
