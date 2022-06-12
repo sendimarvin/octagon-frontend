@@ -1,28 +1,21 @@
 <template>
-  <form action="/action_page.php" class="register_form">
+  <div class="register_form">
   <div class="container">
     <h1>Login</h1>
-    <!-- <p>Please fill in this form to create an account.</p> -->
     <hr>
-
     <label for="phoneNumber"><b>Phone Number</b></label>
     <input type="text" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required  v-model="phoneNumber">
     <br>
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" id="password" required  v-model="password">
     <br>
-    <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-    <hr> -->
-    <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
-
-    <button type="submit" class="registerbtn">Login</button>
+    <button  class="registerbtn" @click="login">Login</button>
   </div>
   
   <div class="container signin">
     <p>Don't have an account? <a href="/signup">Sign up</a>.</p>
   </div>
-</form>
+</div>
 </template>
 
 <style>
@@ -116,7 +109,7 @@ export default {
     }
   },
   methods: {
-    register () {
+    login () {
       console.log({hello: this.phoneNumber})
       fetch('http://localhost:8888/login', {
           method: 'POST',
@@ -128,7 +121,10 @@ export default {
         })
         .then(res => res.json())
         .then(data => console.log('done'))
-        .catch(err => console.log(err.message))      
+        .catch(err => console.log(err.message))
+        .finally(() => {
+          this.$router.push({path: '/'});
+        })      
     }
   }
 }

@@ -4,20 +4,14 @@
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
-
-    <!-- <label for="firstName"><b>First Name</b></label> -->
     <input type="text" placeholder="Enter First Name" name="firstName" id="firstName" required v-model="firstName">
     <br>
-    <!-- <label for="lastName"><b>Last Name</b></label> -->
     <input type="text" placeholder="Enter Last Name" name="lastName" id="lastName" required v-model="lastName">
     <br>
-    <!-- <label for="phoneNumber"><b>Phone Number</b></label> -->
     <input type="text" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required v-model="phoneNumber">
     <br>
-    <!-- <label for="psw"><b>Password</b></label> -->
     <input type="password" placeholder="Enter Password" name="password" id="password" required v-model="password">
     <br>
-    <!-- <label for="psw-repeat"><b>Repeat Password</b></label> -->
     <input type="password" placeholder="Repeat Password" name="password2" id="password2" required v-model="password2">
     <hr>
     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
@@ -142,7 +136,10 @@ export default {
         })
         .then(res => res.json())
         .then(data => console.log('done'))
-        .catch(err => console.log(err.message))      
+        .catch(err => console.log(err.message))
+        .finally(() => {
+          this.$router.push({path: '/login'});
+        })   
     }
   }
 }
